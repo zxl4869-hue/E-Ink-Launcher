@@ -3,4 +3,10 @@
     <external-path
         name="external_storage_root"
         path="."/>
+    <cache-path
+        name="cache"
+        path="."/>
+    <external-files-path
+        name="external_files"
+        path="."/>
 </resource>

@@ -62,6 +62,7 @@ public class LauncherAdapter {
 
   private float fontSize = 14;
   private int appNameLines = Integer.MAX_VALUE;
+  private boolean compactMode = false;
 
   // =========================================================================
   // View 绑定（包级可见，由 EInkLauncherView 调用）
@@ -94,7 +95,7 @@ public class LauncherAdapter {
 
   public void setFontSize(float fontSize) {
     this.fontSize = fontSize;
-    fontSizeObservable.set(fontSize);
+    applyTextSettings();
   }
 
   public float getFontSize() {
@@ -103,10 +104,36 @@ public class LauncherAdapter {
 
   public void setAppNameLines(int lines) {
     this.appNameLines = lines;
+    applyTextSettings();
+  }
+
+  public void setCompactMode(boolean compactMode) {
+    if (this.compactMode == compactMode) return;
+    this.compactMode = compactMode;
+    applyTextSettings();
+  }
+
+  private void applyTextSettings() {
+    fontSizeObservable.set(getEffectiveFontSize());
     for (ItemViewHolder holder : holders) {
-      holder.appName.setMinLines(lines == 2 ? lines : 0);
-      holder.appName.setMaxLines(lines);
+      applyTextSettings(holder);
     }
+  }
+
+  private void applyTextSettings(ItemViewHolder holder) {
+    int lines = getEffectiveAppNameLines();
+    holder.appName.setTextSize(TypedValue.COMPLEX_UNIT_SP, getEffectiveFontSize());
+    holder.appName.setMinLines(lines == 2 ? lines : 0);
+    holder.appName.setMaxLines(lines);
+    holder.appName.setEllipsize(TextUtils.TruncateAt.END);
+  }
+
+  private float getEffectiveFontSize() {
+    return compactMode ? Math.min(fontSize, 14f) : fontSize;
+  }
+
+  private int getEffectiveAppNameLines() {
+    return compactMode ? 1 : appNameLines;
   }
 
   // =========================================================================
@@ -157,10 +184,7 @@ public class LauncherAdapter {
     holders.add(holder);
 
     fontSizeObservable.addObserver((Observer) holder.appName);
-    holder.appName.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
-    holder.appName.setMinLines(appNameLines == 2 ? appNameLines : 0);
-    holder.appName.setMaxLines(appNameLines);
-    holder.appName.setEllipsize(TextUtils.TruncateAt.END);
+    applyTextSettings(holder);
 
     return holder;
   }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">E-Ink Launcher</string>
+    <string name="app_name">墨水屏桌面</string>
     <string name="file_manager">File Manager</string>
 
     <string name="empty_directory_hint">Empty directory</string>
@@ -21,6 +21,24 @@
     <string name="setting_cloud_manager_on">Cloud Manager - ON</string>
     <string name="setting_cloud_manager_off">Cloud Manager - OFF</string>
     <string name="setting_cloud_manager_wifi_off">Cloud Manager\n -- No WIFI connect</string>
+    <string name="setting_wifi_transfer_on">Wi-Fi Transfer - ON</string>
+    <string name="setting_wifi_transfer_off">Wi-Fi Transfer - OFF</string>
+    <string name="setting_wifi_transfer_wifi_off">Wi-Fi Transfer - Connect Wi-Fi</string>
+    <string name="setting_wifi_transfer_failed">Failed to start Wi-Fi transfer</string>
+    <string name="setting_auto_refresh_tap_on">Auto refresh by content changes - ON</string>
+    <string name="setting_auto_refresh_tap_off">Auto refresh by content changes - OFF</string>
+    <string name="setting_auto_refresh_tap_interval">Every %d content changes</string>
+    <string name="setting_wifi_transfer_qr">Wi-Fi Transfer QR Code</string>
+
+    <string name="auto_refresh_accessibility_description">Listen for volume keys, content changes, and directional flicks to refresh or turn pages.</string>
+    <string name="auto_refresh_accessibility_label">E-ink auto refresh</string>
+    <string name="setting_auto_refresh_on">Auto refresh - ON</string>
+    <string name="setting_auto_refresh_off">Auto refresh - OFF</string>
+    <string name="setting_auto_refresh_accessibility_off">Auto refresh - Enable accessibility</string>
+    <string name="setting_auto_refresh_interval">Every %d volume keys</string>
+    <string name="setting_auto_refresh_keycode">Refresh keycode: %d</string>
+    <string name="setting_auto_refresh_delay">Delay: %d ms</string>
+    <string name="setting_auto_refresh_capture_key">Press the global refresh key now</string>
     <string name="battery_status_low_battery">Low power</string>
     <string name="setting_show_divider">Show Divider</string>
     <string name="setting_hide_divider">Hide Divider</string>
@@ -54,6 +72,8 @@
     <string name="wifi_status_disconnecting">WiFi disconnecting</string>
 
     <string name="item_lockscreen">Lock Screen</string>
+    <string name="item_rotate_screen">Rotate Screen</string>
+    <string name="item_qr_scan">Scan QR</string>
     <string name="launch_failed">Launch failed</string>
     <string name="launch_devicemanager_failed">Please open Device Policy Manager and enable E-Ink Launcher</string>
     <string name="launch_devicemanager">Open Device Policy Manager</string>
@@ -74,9 +94,28 @@
     <string name="delete">Delete</string>
     <string name="show_statusbar">Show StatusBar</string>
     <string name="show_wifi_name">Show Wifi Name</string>
-    <string name="show_custom_icon">Show custom icon</string>
+    <string name="show_custom_icon">Icon style</string>
+    <string name="icon_auto_fill">Cloud icon completion</string>
+    <string name="icon_theme_builtin">Default style</string>
+    <string name="icon_theme_local">Local icons</string>
+    <string name="icon_theme_selected">Selected</string>
     <string name="notification_click_back_launcher">Click here, back to Launcher</string>
     <string name="app_show_name">App name</string>
     <string name="setting_sort_mode">Sort</string>
     <string name="sort_need_usage_permission">Please grant usage access permission for this sort mode</string>
+    <string name="setting_standby_wallpaper">Lock screen clock</string>
+    <string name="setting_standby_full_refresh">Full refresh on update</string>
+    <string name="setting_book_cover">Transparent Book Cover</string>
+    <string name="book_cover_need_permission">Screen capture permission required for book cover</string>
+    <string name="setting_sos_frame_refresh">Long-press SOS frame-by-frame refresh</string>
+    <string name="setting_shake_refresh">Flick action</string>
+    <string name="setting_shake_refresh_sensor_missing">This device has no motion sensor</string>
+    <string name="setting_shake_mode_off">Off</string>
+    <string name="setting_shake_mode_refresh">Full refresh</string>
+    <string name="setting_shake_mode_page_turn">Page turn</string>
+    <string name="setting_shake_count">Shake count</string>
+    <string name="setting_shake_amplitude">Shake amplitude</string>
+    <string name="setting_shake_amplitude_small">Small</string>
+    <string name="setting_shake_amplitude_medium">Medium</string>
+    <string name="setting_shake_amplitude_large">Large</string>
 </resources>

@@ -29,7 +29,7 @@ import java.util.Map;
  *   <li>6 - 最近访问正序（最久优先）</li>
  *   <li>7 - 最近访问逆序（最近优先）</li>
  * </ul>
- * 虚拟图标（锁屏、WiFi）始终排在末尾。
+ * 虚拟图标始终排在末尾。
  */
 public class AppSortComparator implements Comparator<ResolveInfo> {
 
@@ -46,9 +46,10 @@ public class AppSortComparator implements Comparator<ResolveInfo> {
   private final PackageManager pm;
   private final Collator collator;
   private final Map<String, Long> installTimeCache = new HashMap<>();
+  private final Map<String, String> labelCache = new HashMap<>();
   private Map<String, UsageStats> usageStatsMap;
 
-  public AppSortComparator(Context context, PackageManager pm, int mode) {
+  public AppSortComparator(Context context, PackageManager pm, int mode, List<ResolveInfo> apps) {
     this.mode = mode;
     this.pm = pm;
     this.collator = Collator.getInstance(Locale.getDefault());
@@ -56,6 +57,17 @@ public class AppSortComparator implements Comparator<ResolveInfo> {
 
     if (needsUsageStats()) {
       usageStatsMap = queryUsageStats(context);
+    }
+
+    // Preload expensive IPC data to avoid per-comparison PackageManager calls
+    if (mode == SORT_NAME_ASC || mode == SORT_NAME_DESC) {
+      for (ResolveInfo info : apps) {
+        labelCache.put(info.activityInfo.packageName, info.loadLabel(pm).toString());
+      }
+    } else if (mode == SORT_INSTALL_ASC || mode == SORT_INSTALL_DESC) {
+      for (ResolveInfo info : apps) {
+        getInstallTime(info); // populates installTimeCache
+      }
     }
   }
 
@@ -109,14 +121,16 @@ public class AppSortComparator implements Comparator<ResolveInfo> {
   }
 
   private boolean isVirtual(ResolveInfo info) {
-    String pkg = info.activityInfo.packageName;
-    return AppDataCenter.LOCK_PACKAGE_NAME.equals(pkg)
-        || AppDataCenter.WIFI_PACKAGE_NAME.equals(pkg);
+    return info != null
+        && info.activityInfo != null
+        && AppDataCenter.isVirtualPackage(info.activityInfo.packageName);
   }
 
   private int compareByName(ResolveInfo a, ResolveInfo b) {
-    String labelA = a.loadLabel(pm).toString();
-    String labelB = b.loadLabel(pm).toString();
+    String labelA = labelCache.get(a.activityInfo.packageName);
+    String labelB = labelCache.get(b.activityInfo.packageName);
+    if (labelA == null) labelA = a.loadLabel(pm).toString();
+    if (labelB == null) labelB = b.loadLabel(pm).toString();
     return collator.compare(labelA, labelB);
   }
 

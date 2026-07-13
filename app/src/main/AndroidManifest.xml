@@ -5,7 +5,10 @@
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,16 +18,27 @@
     <uses-permission android:name="android.permission.REBOOT" />
     <uses-permission android:name="android.permission.DELETE_PACKAGES"/>
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="io.legado.READ_WRITE" />
+
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="false" />
+    <uses-feature android:name="android.hardware.sensor.gyroscope" android:required="false" />
 
     <application
         android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -44,10 +58,79 @@
             <meta-data android:name="com.yotadevices.keep_on_epd_screen" android:value="true"/>
         </activity>
 
+        <activity
+            android:name=".StandbyActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@style/AppTheme">
+            <meta-data android:name="com.yotadevices.keep_on_epd_screen" android:value="true"/>
+        </activity>
+
+        <activity
+            android:name=".BookCoverCaptureActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:noHistory="true"
+            android:theme="@style/TransparentTheme" />
+
+        <activity
+            android:name=".QrScanActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:screenOrientation="nosensor"
+            android:theme="@style/AppTheme" />
+
         <service
             android:name=".ftpservice.FTPService"
             android:enabled="true"
             android:exported="true" />
+
+        <service
+            android:name=".wifitransfer.WifiFileTransferService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:name=".model.ForceRotationService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:name=".autorefresh.AutoRefreshAccessibilityService"
+            android:enabled="true"
+            android:exported="true"
+            android:label="@string/auto_refresh_accessibility_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/auto_refresh_accessibility_service" />
+        </service>
+
+        <receiver
+            android:name=".autorefresh.AutoRefreshSettingsReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="cn.modificator.launcher.autorefresh.SET_KEYCODE" />
+                <action android:name="cn.modificator.launcher.autorefresh.SET_INTERVAL" />
+                <action android:name="cn.modificator.launcher.autorefresh.SET_ENABLED" />
+                <action android:name="cn.modificator.launcher.autorefresh.FORCE_REFRESH" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".StandbyMinuteRefreshReceiver"
+            android:exported="false" />
+
+        <receiver
+            android:name=".DebugReceiver"
+            android:exported="true" />
+
+        <receiver
+            android:name=".IconThemeUpdateReceiver"
+            android:exported="false" />
 
         <receiver
             android:name=".model.AdminReceiver"
@@ -75,6 +158,12 @@
             android:process=":crash_page" android:exported="false">
             <meta-data android:name="com.yotadevices.keep_on_epd_screen" android:value="true"/>
         </activity>
+
+        <activity
+            android:name=".legado.LegadoOpenActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:noHistory="true" />
 
         <service android:name=".model.HomeEntranceService">
         </service>

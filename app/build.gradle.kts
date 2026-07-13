@@ -11,13 +11,16 @@ android {
         applicationId = "cn.modificator.launcher"
         minSdk = 14
         targetSdk = 36
-        versionCode = 30
-        versionName = "0.1.8.6"
+        versionCode = 49
+        versionName = "0.1.10.13"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix = ".debug"
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
@@ -43,6 +46,8 @@ android {
 
 dependencies {
     implementation("androidx.core:core:1.12.0")
+    implementation("com.google.zxing:core:3.5.3")
     implementation("org.apache.ftpserver:ftplet-api:1.2.1")
     implementation("org.apache.ftpserver:ftpserver-core:1.2.1")
+    testImplementation("junit:junit:4.13.2")
 }

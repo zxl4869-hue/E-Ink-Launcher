@@ -27,8 +27,6 @@ import cn.modificator.launcher.widgets.RatioImageView;
 public class WifiControl {
 
   private static final String TAG = "WifiControl";
-  private static final String WIFI_ON_RES_NAME = "E-ink_Launcher.WifiOn";
-  private static final String WIFI_OFF_RES_NAME = "E-ink_Launcher.WifiOff";
 
   private ObserverFontTextView appName;
   private RatioImageView appImage;
@@ -89,7 +87,9 @@ public class WifiControl {
 
     appName.setText(appContext.getString(showNameRes, connectWifiName));
 
-    String fileName = showIconRes == R.drawable.wifi_on ? WIFI_ON_RES_NAME : WIFI_OFF_RES_NAME;
+    String fileName = showIconRes == R.drawable.wifi_on
+        ? IconCategoryResolver.KEY_SYSTEM_WIFI_ON
+        : IconCategoryResolver.KEY_SYSTEM_WIFI_OFF;
     File replaceFile = iconReplaceMap != null ? iconReplaceMap.get(fileName) : null;
     if (replaceFile != null) {
       appImage.setImageURI(Uri.fromFile(replaceFile));

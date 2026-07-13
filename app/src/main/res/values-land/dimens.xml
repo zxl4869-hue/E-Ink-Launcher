@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="launcher_side_rail_width">30dp</dimen>
+    <dimen name="launcher_bottom_bar_height">30dp</dimen>
+</resources>

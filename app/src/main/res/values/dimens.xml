@@ -6,4 +6,7 @@
 
     <item name="menu_item_text_size" type="dimen">18sp</item>
     <item name="menu_item_height" type="dimen">55dp</item>
+    <dimen name="launcher_side_rail_width">30dp</dimen>
+    <dimen name="launcher_rail_stripe_inset">28dp</dimen>
+    <dimen name="launcher_bottom_bar_height">34dp</dimen>
 </resources>

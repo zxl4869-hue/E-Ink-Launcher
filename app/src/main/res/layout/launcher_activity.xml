@@ -1,109 +1,1331 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/white">
 
-    <cn.modificator.launcher.widgets.EInkLauncherView
-        android:id="@+id/mList"
+    <ImageView
+        android:id="@+id/desktopWallpaper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"></cn.modificator.launcher.widgets.EInkLauncherView>
+        android:scaleType="centerCrop" />
 
-    <View
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0.7dp"
-        android:background="#000000" />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="45dp">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:visibility="visible">
+            android:id="@+id/primaryRail"
+            android:layout_width="@dimen/launcher_side_rail_width"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp">
 
-            <TextView
-                android:id="@+id/pageStatus"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="1/1"
-                android:textColor="#000000"
-                android:textSize="17sp" />
+            <LinearLayout
+                android:id="@+id/navApps"
+                style="@style/LauncherSideItemSmall">
+                <ImageView
+                    style="@style/LauncherSideIcon"
+                    android:src="@drawable/ic_rail_home" />
+                <TextView
+                    android:id="@+id/navAppsText"
+                    style="@style/LauncherSideText"
+                    android:text="" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/textClock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textSize="16sp"/>
+            <LinearLayout
+                android:id="@+id/navDrawer"
+                style="@style/LauncherSideItemSmall">
+                <ImageView
+                    style="@style/LauncherSideIcon"
+                    android:src="@drawable/ic_rail_app" />
+                <TextView
+                    android:id="@+id/navDrawerText"
+                    style="@style/LauncherSideText"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/navReading"
+                style="@style/LauncherSideItemSmall">
+                <ImageView
+                    style="@style/LauncherSideIcon"
+                    android:src="@drawable/ic_rail_book" />
+                <TextView
+                    android:id="@+id/navReadingText"
+                    style="@style/LauncherSideText"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/navSettings"
+                style="@style/LauncherSideItemSmall">
+                <ImageView
+                    style="@style/LauncherSideIcon"
+                    android:src="@drawable/ic_rail_settings" />
+                <TextView
+                    android:id="@+id/navSettingsText"
+                    style="@style/LauncherSideText"
+                    android:text="" />
+            </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_height="38dp" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <cn.modificator.launcher.widgets.BatteryView
-                    android:id="@+id/batteryProgress"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp" />
-
+                android:id="@+id/sideWifi"
+                style="@style/LauncherSideItemSmall">
+                <ImageView
+                    android:id="@+id/sideNetworkIcon"
+                    style="@style/LauncherSideIcon"
+                    android:src="@drawable/ic_rail_wifi" />
                 <TextView
-                    android:id="@+id/batteryStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="充电中"
-                    android:textColor="#000000"
-                    android:textSize="9sp" />
+                    style="@style/LauncherSideText"
+                    android:text="" />
             </LinearLayout>
 
-
-            <ImageView
-                android:id="@+id/toSetting"
-                android:layout_width="60dp"
-                android:layout_height="45dp"
-                android:background="?android:selectableItemBackground"
-                android:clickable="true"
-                android:padding="10dp"
-                android:src="@drawable/navibar_icon_settings_highlight" />
-
-            <Button
-                android:id="@+id/lastPage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Last Page"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/nextPage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Next Page"
-                android:visibility="gone" />
+            <LinearLayout
+                android:id="@+id/sideLock"
+                style="@style/LauncherSideItemSmall">
+                <ImageView
+                    style="@style/LauncherSideIcon"
+                    android:src="@drawable/ic_rail_lock" />
+                <TextView
+                    style="@style/LauncherSideText"
+                    android:text="" />
+            </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/deleteFinish"
-            android:layout_width="match_parent"
+        <FrameLayout
+            android:id="@+id/contentHost"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            android:clickable="true"
-            android:gravity="center"
-            android:text="@string/app_manager_finish"
-            android:textSize="18sp"
-            android:visibility="gone" />
-    </FrameLayout>
-</LinearLayout>
+            android:layout_weight="1"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="8dp">
+
+            <LinearLayout
+                android:id="@+id/appsPage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textClock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:textColor="#000000"
+                    android:textSize="43sp"
+                    tools:text="12:35" />
+
+                <TextView
+                    android:id="@+id/dateClock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    tools:text="5月9日 星期六" />
+
+                <TextView
+                    android:id="@+id/lunarClock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="农历四月十二"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:id="@+id/homeReadingCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="104dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_launcher_card"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="8dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/homeReadingLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:text="继续阅读"
+                        android:textColor="#000000"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/homeReadingTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:singleLine="true"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        tools:text="其他从此男主改拿绿茶剧本" />
+
+                    <TextView
+                        android:id="@+id/homeReadingChapter"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:singleLine="true"
+                        android:textColor="#000000"
+                        android:textSize="12sp"
+                        tools:text="第151章" />
+
+                    <cn.modificator.launcher.widgets.ReadingProgressBar
+                        android:id="@+id/homeReadingProgress"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="6dp"
+                        android:max="100" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/appsSectionTitle"
+                    style="@style/LauncherSectionTitle"
+                    android:layout_marginTop="10dp"
+                    android:text="全部应用"
+                    android:visibility="gone" />
+
+                <cn.modificator.launcher.widgets.EInkLauncherView
+                    android:id="@+id/mList"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="9dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/readingPage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/readingTimeClock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:textColor="#000000"
+                    android:textSize="36sp"
+                    android:visibility="gone"
+                    tools:text="12:35" />
+
+                <TextView
+                    android:id="@+id/readingDateClock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    tools:text="5月9日 星期六" />
+
+                <LinearLayout
+                    android:id="@+id/readingTitleBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/readingStatus"
+                        style="@style/LauncherSectionTitle"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="阅读进度" />
+
+                    <TextView
+                        android:id="@+id/readingRefreshAction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:minWidth="48dp"
+                        android:text="刷新"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/readingBooksList"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/settingsPage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/settingsHomePage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/settingsHomeTitle"
+                        style="@style/LauncherSectionTitle"
+                        android:layout_marginTop="18dp"
+                        android:text="设置" />
+
+                    <LinearLayout
+                        android:id="@+id/settingOpenLauncher"
+                        style="@style/LauncherControlRow"
+                        android:layout_marginTop="18dp">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_settings" />
+                        <TextView style="@style/LauncherControlLabel" android:text="桌面与外观" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingManageApps"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_app" />
+                        <TextView style="@style/LauncherControlLabel" android:text="管理应用" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingTransfer"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_wifi" />
+                        <TextView style="@style/LauncherControlLabel" android:text="文件传输" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingAutoRefresh"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView style="@style/LauncherControlLabel" android:text="自动全局刷新" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingReadingSync"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_book" />
+                        <TextView style="@style/LauncherControlLabel" android:text="阅读同步" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingUpdate"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_mobile" />
+                        <TextView style="@style/LauncherControlLabel" android:text="联网更新" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingPermissions"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_tool" />
+                        <TextView style="@style/LauncherControlLabel" android:text="权限检查" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingQrScan"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_camera" />
+                        <TextView style="@style/LauncherControlLabel" android:text="扫码设置" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingWifi"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_wifi" />
+                        <TextView style="@style/LauncherControlLabel" android:text="网络" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingDeviceManager"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_settings" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/setting_open_device_manager" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingHelpAbout"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_book" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/setting_help_and_about" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingLock"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_lock" />
+                        <TextView style="@style/LauncherControlLabel" android:text="锁屏" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/settingsUpdatePage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/settingsUpdateTitle"
+                        style="@style/LauncherSectionTitle"
+                        android:layout_marginTop="18dp"
+                        android:text="联网更新" />
+
+                    <LinearLayout
+                        android:id="@+id/settingUpdateBack"
+                        style="@style/LauncherControlRow"
+                        android:layout_marginTop="18dp">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_chevron_left" />
+                        <TextView style="@style/LauncherControlLabel" android:text="返回设置" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingUpdateCheck"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_mobile" />
+                        <TextView style="@style/LauncherControlLabel" android:text="检查并安装更新" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingUpdateCurrentRow"
+                        style="@style/LauncherControlRow"
+                        android:clickable="false"
+                        android:focusable="false">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_app" />
+                        <TextView style="@style/LauncherControlLabel" android:text="当前版本" />
+                        <TextView android:id="@+id/settingUpdateCurrentVersion" style="@style/LauncherControlValue" android:layout_width="90dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/settingUpdateStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:paddingLeft="44dp"
+                        android:singleLine="false"
+                        android:text="未检查"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/settingUpdateNotes"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="top"
+                        android:includeFontPadding="true"
+                        android:paddingLeft="44dp"
+                        android:paddingRight="8dp"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/settingsPermissionPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/settingsPermissionTitle"
+                        style="@style/LauncherSectionTitle"
+                        android:layout_marginTop="18dp"
+                        android:text="权限检查" />
+
+                    <LinearLayout
+                        android:id="@+id/settingPermissionsBack"
+                        style="@style/LauncherControlRow"
+                        android:layout_marginTop="18dp">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_chevron_left" />
+                        <TextView style="@style/LauncherControlLabel" android:text="返回设置" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingPermissionRequestAll"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_tool" />
+                        <TextView style="@style/LauncherControlLabel" android:text="检查并请求缺失权限" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingPermissionCamera"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_camera" />
+                        <TextView style="@style/LauncherControlLabel" android:text="扫码相机" />
+                        <TextView android:id="@+id/settingPermissionCameraValue" style="@style/LauncherControlValue" android:layout_width="64dp" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingPermissionStorage"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_file" />
+                        <TextView style="@style/LauncherControlLabel" android:text="存储文件" />
+                        <TextView android:id="@+id/settingPermissionStorageValue" style="@style/LauncherControlValue" android:layout_width="64dp" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingPermissionLocation"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_wifi" />
+                        <TextView style="@style/LauncherControlLabel" android:text="Wi-Fi 定位" />
+                        <TextView android:id="@+id/settingPermissionLocationValue" style="@style/LauncherControlValue" android:layout_width="64dp" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingPermissionInstall"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_mobile" />
+                        <TextView style="@style/LauncherControlLabel" android:text="安装更新" />
+                        <TextView android:id="@+id/settingPermissionInstallValue" style="@style/LauncherControlValue" android:layout_width="64dp" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingPermissionUsage"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_app" />
+                        <TextView style="@style/LauncherControlLabel" android:text="使用情况访问" />
+                        <TextView android:id="@+id/settingPermissionUsageValue" style="@style/LauncherControlValue" android:layout_width="64dp" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingPermissionWriteSettings"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_settings" />
+                        <TextView style="@style/LauncherControlLabel" android:text="修改系统设置" />
+                        <TextView android:id="@+id/settingPermissionWriteSettingsValue" style="@style/LauncherControlValue" android:layout_width="64dp" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingPermissionOverlay"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView style="@style/LauncherControlLabel" android:text="悬浮窗服务" />
+                        <TextView android:id="@+id/settingPermissionOverlayValue" style="@style/LauncherControlValue" android:layout_width="64dp" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingPermissionAccessibility"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView style="@style/LauncherControlLabel" android:text="自动刷新辅助" />
+                        <TextView android:id="@+id/settingPermissionAccessibilityValue" style="@style/LauncherControlValue" android:layout_width="64dp" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingPermissionDeviceAdmin"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_lock" />
+                        <TextView style="@style/LauncherControlLabel" android:text="锁屏管理" />
+                        <TextView android:id="@+id/settingPermissionDeviceAdminValue" style="@style/LauncherControlValue" android:layout_width="64dp" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingPermissionScreenCapture"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_camera" />
+                        <TextView style="@style/LauncherControlLabel" android:text="透明书封录屏" />
+                        <TextView android:id="@+id/settingPermissionScreenCaptureValue" style="@style/LauncherControlValue" android:layout_width="64dp" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/settingsTransferPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/settingsTransferTitle"
+                        style="@style/LauncherSectionTitle"
+                        android:layout_marginTop="18dp"
+                        android:text="文件传输" />
+
+                    <LinearLayout
+                        android:id="@+id/settingTransferBack"
+                        style="@style/LauncherControlRow"
+                        android:layout_marginTop="18dp">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_chevron_left" />
+                        <TextView style="@style/LauncherControlLabel" android:text="返回设置" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingWifiTransferToggle"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_wifi" />
+                        <TextView style="@style/LauncherControlLabel" android:text="Wi-Fi 文件传输" />
+                        <TextView android:id="@+id/settingWifiTransferStatus" style="@style/LauncherControlValue" android:layout_width="88dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/settingWifiTransferAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:singleLine="true"
+                        android:textColor="#000000"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/settingWifiTransferQr"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="#ffffff"
+                        android:contentDescription="@string/setting_wifi_transfer_qr"
+                        android:scaleType="fitCenter"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/settingsAutoRefreshPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/settingsAutoRefreshTitle"
+                        style="@style/LauncherSectionTitle"
+                        android:layout_marginTop="18dp"
+                        android:text="自动全局刷新" />
+
+                    <LinearLayout
+                        android:id="@+id/settingAutoRefreshBack"
+                        style="@style/LauncherControlRow"
+                        android:layout_marginTop="18dp">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_chevron_left" />
+                        <TextView style="@style/LauncherControlLabel" android:text="返回设置" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingAutoRefreshToggle"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView style="@style/LauncherControlLabel" android:text="自动全局刷新" />
+                        <TextView android:id="@+id/settingAutoRefreshStatus" style="@style/LauncherControlValue" android:layout_width="88dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingAutoRefreshInterval"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView android:id="@+id/settingAutoRefreshIntervalText" style="@style/LauncherControlLabel" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingAutoRefreshTapToggle"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView style="@style/LauncherControlLabel" android:text="内容变化自动刷新" />
+                        <TextView android:id="@+id/settingAutoRefreshTapStatus" style="@style/LauncherControlValue" android:layout_width="88dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingAutoRefreshTapInterval"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView android:id="@+id/settingAutoRefreshTapIntervalText" style="@style/LauncherControlLabel" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingAutoRefreshDelay"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView android:id="@+id/settingAutoRefreshDelayText" style="@style/LauncherControlLabel" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingAutoRefreshKeycode"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_lock" />
+                        <TextView android:id="@+id/settingAutoRefreshKeycodeText" style="@style/LauncherControlLabel" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingAutoRefreshSosFrameRefresh"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/setting_sos_frame_refresh" />
+                        <TextView android:id="@+id/settingAutoRefreshSosFrameRefreshValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingAutoRefreshShakeRefresh"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/setting_shake_refresh" />
+                        <TextView android:id="@+id/settingAutoRefreshShakeRefreshValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingAutoRefreshShakeCount"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/setting_shake_count" />
+                        <TextView android:id="@+id/settingAutoRefreshShakeCountValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingAutoRefreshShakeAmplitude"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/setting_shake_amplitude" />
+                        <TextView android:id="@+id/settingAutoRefreshShakeAmplitudeValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/settingsReadingPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/settingsReadingTitle"
+                        style="@style/LauncherSectionTitle"
+                        android:layout_marginTop="18dp"
+                        android:text="阅读同步" />
+
+                    <LinearLayout
+                        android:id="@+id/settingReadingBack"
+                        style="@style/LauncherControlRow"
+                        android:layout_marginTop="18dp">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_chevron_left" />
+                        <TextView style="@style/LauncherControlLabel" android:text="返回设置" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingWereadSyncToggle"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_weread" />
+                        <TextView style="@style/LauncherControlLabel" android:text="微信读书同步" />
+                        <TextView android:id="@+id/settingWereadSyncValue" style="@style/LauncherControlValue" android:layout_width="72dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingWereadApiKey"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_weread" />
+                        <TextView style="@style/LauncherControlLabel" android:text="Skill Key" />
+                        <TextView
+                            android:id="@+id/settingWereadApiKeyValue"
+                            style="@style/LauncherControlValue"
+                            android:layout_width="88dp"
+                            android:ellipsize="end" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingWereadSyncInterval"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_book" />
+                        <TextView style="@style/LauncherControlLabel" android:text="同步间隔" />
+                        <TextView
+                            android:id="@+id/settingWereadSyncIntervalValue"
+                            style="@style/LauncherControlValue"
+                            android:layout_width="88dp"
+                            android:ellipsize="end" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingWereadSyncNow"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView style="@style/LauncherControlLabel" android:text="立即同步" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/settingsDesktopPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/settingsDesktopTitle"
+                        style="@style/LauncherSectionTitle"
+                        android:layout_marginTop="18dp"
+                        android:text="桌面设置" />
+
+                    <LinearLayout
+                        android:id="@+id/settingDesktopBack"
+                        style="@style/LauncherControlRow"
+                        android:layout_marginTop="18dp">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_chevron_left" />
+                        <TextView
+                            android:id="@+id/settingDesktopBackLabel"
+                            style="@style/LauncherControlLabel"
+                            android:text="返回设置" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingLayoutGroup" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_app" />
+                        <TextView style="@style/LauncherControlLabel" android:text="布局" />
+                        <TextView
+                            android:id="@+id/settingLayoutGroupValue"
+                            style="@style/LauncherControlValue"
+                            android:layout_width="74dp"
+                            android:ellipsize="end" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingFavoriteApps" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_home" />
+                        <TextView style="@style/LauncherControlLabel" android:text="主页常用应用" />
+                        <TextView
+                            android:id="@+id/settingFavoriteAppsValue"
+                            style="@style/LauncherControlValue"
+                            android:layout_width="74dp"
+                            android:ellipsize="end" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingDisplayGroup" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_settings" />
+                        <TextView style="@style/LauncherControlLabel" android:text="显示" />
+                        <TextView
+                            android:id="@+id/settingDisplayGroupValue"
+                            style="@style/LauncherControlValue"
+                            android:layout_width="74dp"
+                            android:ellipsize="end" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingIconGroup" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_app" />
+                        <TextView style="@style/LauncherControlLabel" android:text="图标风格" />
+                        <TextView
+                            android:id="@+id/settingIconGroupValue"
+                            style="@style/LauncherControlValue"
+                            android:layout_width="120dp"
+                            android:ellipsize="end" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingOrientationGroup" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView style="@style/LauncherControlLabel" android:text="屏幕方向" />
+                        <TextView
+                            android:id="@+id/settingOrientationGroupValue"
+                            style="@style/LauncherControlValue"
+                            android:layout_width="74dp"
+                            android:ellipsize="end" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingStandbyGroup" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_lock" />
+                        <TextView style="@style/LauncherControlLabel" android:text="待机锁屏" />
+                        <TextView
+                            android:id="@+id/settingStandbyGroupValue"
+                            style="@style/LauncherControlValue"
+                            android:layout_width="74dp"
+                            android:ellipsize="end" />
+                        <TextView style="@style/LauncherControlArrow" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingColNum" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_app" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/setting_row_icons" />
+                        <TextView android:id="@+id/settingColNumValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingRowNum" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_app" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/setting_column_icons" />
+                        <TextView android:id="@+id/settingRowNumValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingSortMode" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_app" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/setting_sort_mode" />
+                        <TextView android:id="@+id/settingSortModeValue" style="@style/LauncherControlValue" android:layout_width="74dp" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingAppNameLines" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_app" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/app_show_name" />
+                        <TextView android:id="@+id/settingAppNameLinesValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingFontSize" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_settings" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/setting_set_font_size" />
+                        <TextView android:id="@+id/settingFontSizeValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingDesktopWallpaper" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_gallery" />
+                        <TextView style="@style/LauncherControlLabel" android:text="整页壁纸" />
+                        <TextView
+                            android:id="@+id/settingDesktopWallpaperValue"
+                            style="@style/LauncherControlValue"
+                            android:layout_width="120dp"
+                            android:ellipsize="end" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingDivider" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_settings" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/setting_show_divider" />
+                        <TextView android:id="@+id/settingDividerValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingStatusBar" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_mobile" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/show_statusbar" />
+                        <TextView android:id="@+id/settingStatusBarValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingCustomIcon" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_app" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/show_custom_icon" />
+                        <TextView android:id="@+id/settingCustomIconValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingIconAutoFill" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_app" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/icon_auto_fill" />
+                        <TextView android:id="@+id/settingIconAutoFillValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingRotationAuto" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView style="@style/LauncherControlLabel" android:text="方向：自动旋转" />
+                        <TextView android:id="@+id/settingRotationAutoValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingRotationPortrait" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView style="@style/LauncherControlLabel" android:text="方向：竖屏" />
+                        <TextView android:id="@+id/settingRotationPortraitValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingRotationLandscape" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView style="@style/LauncherControlLabel" android:text="方向：横屏" />
+                        <TextView android:id="@+id/settingRotationLandscapeValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingRotationReversePortrait" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView style="@style/LauncherControlLabel" android:text="方向：反向竖屏" />
+                        <TextView android:id="@+id/settingRotationReversePortraitValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/settingRotationReverseLandscape" style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_rotate" />
+                        <TextView style="@style/LauncherControlLabel" android:text="方向：反向横屏" />
+                        <TextView android:id="@+id/settingRotationReverseLandscapeValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyText"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_lock" />
+                        <TextView
+                            android:layout_width="76dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="16dp"
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:singleLine="true"
+                            android:text="锁屏文字"
+                            android:textColor="#000000"
+                            android:textSize="20sp" />
+                        <EditText
+                            android:id="@+id/settingStandbyTextInput"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:includeFontPadding="false"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+                        <TextView
+                            android:id="@+id/settingStandbyTextSave"
+                            android:layout_width="46dp"
+                            android:layout_height="match_parent"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="保存"
+                            android:textColor="#000000"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyFullRefresh"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_lock" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/setting_standby_full_refresh" />
+                        <TextView android:id="@+id/settingStandbyFullRefreshValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyClockStyle"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_lock" />
+                        <TextView style="@style/LauncherControlLabel" android:text="熄屏时钟样式" />
+                        <TextView
+                            android:id="@+id/settingStandbyClockStyleValue"
+                            style="@style/LauncherControlValue"
+                            android:layout_width="120dp"
+                            android:ellipsize="end" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyClockClassic"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_lock" />
+                        <TextView style="@style/LauncherControlLabel" android:text="经典" />
+                        <TextView android:id="@+id/settingStandbyClockClassicValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyClockClassicHollow"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_lock" />
+                        <TextView style="@style/LauncherControlLabel" android:text="经典镂空" />
+                        <TextView android:id="@+id/settingStandbyClockClassicHollowValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyClockFlipLandscape"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_lock" />
+                        <TextView style="@style/LauncherControlLabel" android:text="横屏翻页钟" />
+                        <TextView android:id="@+id/settingStandbyClockFlipLandscapeValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyClockFlipLandscapeLight"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_lock" />
+                        <TextView style="@style/LauncherControlLabel" android:text="白底黑字翻页钟" />
+                        <TextView android:id="@+id/settingStandbyClockFlipLandscapeLightValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyClockMinimalLandscape"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_lock" />
+                        <TextView style="@style/LauncherControlLabel" android:text="横屏极简大钟" />
+                        <TextView android:id="@+id/settingStandbyClockMinimalLandscapeValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingBookCover"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_book" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/setting_book_cover" />
+                        <TextView android:id="@+id/settingBookCoverValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingBookCoverRandom"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_book" />
+                        <TextView style="@style/LauncherControlLabel" android:text="书封随机选取" />
+                        <TextView android:id="@+id/settingBookCoverRandomValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingWereadWallpaper"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_weread" />
+                        <TextView style="@style/LauncherControlLabel" android:text="微信读书壁纸" />
+                        <TextView android:id="@+id/settingWereadWallpaperValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingWereadWallpaperInterval"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_weread" />
+                        <TextView style="@style/LauncherControlLabel" android:text="微信壁纸刷新间隔" />
+                        <TextView
+                            android:id="@+id/settingWereadWallpaperIntervalValue"
+                            style="@style/LauncherControlValue"
+                            android:layout_width="120dp"
+                            android:ellipsize="end" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyWallpaper"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_side_lock" />
+                        <TextView style="@style/LauncherControlLabel" android:text="@string/setting_standby_wallpaper" />
+                        <TextView android:id="@+id/settingStandbyWallpaperValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyRandomWallpaper"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_gallery" />
+                        <TextView style="@style/LauncherControlLabel" android:text="随机壁纸" />
+                        <TextView android:id="@+id/settingStandbyRandomWallpaperValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyRandomWallpaperInterval"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_gallery" />
+                        <TextView style="@style/LauncherControlLabel" android:text="壁纸刷新间隔" />
+                        <TextView
+                            android:id="@+id/settingStandbyRandomWallpaperIntervalValue"
+                            style="@style/LauncherControlValue"
+                            android:layout_width="120dp"
+                            android:ellipsize="end" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyRandomWallpaperInterval1Min"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_gallery" />
+                        <TextView style="@style/LauncherControlLabel" android:text="1分钟" />
+                        <TextView android:id="@+id/settingStandbyRandomWallpaperInterval1MinValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyRandomWallpaperInterval5Min"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_gallery" />
+                        <TextView style="@style/LauncherControlLabel" android:text="5分钟" />
+                        <TextView android:id="@+id/settingStandbyRandomWallpaperInterval5MinValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyRandomWallpaperInterval15Min"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_gallery" />
+                        <TextView style="@style/LauncherControlLabel" android:text="15分钟" />
+                        <TextView android:id="@+id/settingStandbyRandomWallpaperInterval15MinValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyRandomWallpaperInterval30Min"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_gallery" />
+                        <TextView style="@style/LauncherControlLabel" android:text="30分钟" />
+                        <TextView android:id="@+id/settingStandbyRandomWallpaperInterval30MinValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyRandomWallpaperInterval1Hour"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_gallery" />
+                        <TextView style="@style/LauncherControlLabel" android:text="1小时" />
+                        <TextView android:id="@+id/settingStandbyRandomWallpaperInterval1HourValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyRandomWallpaperInterval2Hour"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_gallery" />
+                        <TextView style="@style/LauncherControlLabel" android:text="2小时" />
+                        <TextView android:id="@+id/settingStandbyRandomWallpaperInterval2HourValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyRandomWallpaperInterval6Hour"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_gallery" />
+                        <TextView style="@style/LauncherControlLabel" android:text="6小时" />
+                        <TextView android:id="@+id/settingStandbyRandomWallpaperInterval6HourValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyRandomWallpaperInterval12Hour"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_line_gallery" />
+                        <TextView style="@style/LauncherControlLabel" android:text="12小时" />
+                        <TextView android:id="@+id/settingStandbyRandomWallpaperInterval12HourValue" style="@style/LauncherControlValue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingStandbyPreview"
+                        style="@style/LauncherControlRow">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_side_lock" />
+                        <TextView style="@style/LauncherControlLabel" android:text="待机页预览" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/settingsIconThemePage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/settingsIconThemeTitle"
+                        style="@style/LauncherSectionTitle"
+                        android:layout_marginTop="18dp"
+                        android:text="@string/show_custom_icon" />
+
+                    <LinearLayout
+                        android:id="@+id/settingIconThemeBack"
+                        style="@style/LauncherControlRow"
+                        android:layout_marginTop="18dp">
+                        <ImageView style="@style/LauncherControlIcon" android:src="@drawable/ic_chevron_left" />
+                        <TextView
+                            android:id="@+id/settingIconThemeBackLabel"
+                            style="@style/LauncherControlLabel"
+                            android:text="返回图标设置" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingIconThemeList"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical" />
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/secondaryRail"
+            android:layout_width="@dimen/launcher_side_rail_width"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="9dp">
+
+            <cn.modificator.launcher.widgets.BatteryView
+                android:id="@+id/batteryProgress"
+                android:layout_width="18dp"
+                android:layout_height="34dp" />
+
+            <TextView
+                android:id="@+id/batteryStatus"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textSize="9sp"
+                tools:text="100" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/lastPage"
+                style="@style/LauncherRailIconButton"
+                android:src="@drawable/ic_rail_chevron_up" />
+
+            <cn.modificator.launcher.widgets.PageIndicatorView
+                android:id="@+id/pageIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp" />
+
+            <ImageView
+                android:id="@+id/nextPage"
+                style="@style/LauncherRailIconButton"
+                android:src="@drawable/ic_rail_chevron_down" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/deleteFinish"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="@string/app_manager_finish"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:visibility="gone" />
+</FrameLayout>

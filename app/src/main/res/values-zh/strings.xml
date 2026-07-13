@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">E-Ink Launcher</string>
+    <string name="app_name">墨水屏桌面</string>
     <string name="file_manager">文件浏览</string>
 
     <string name="empty_directory_hint">空文件夹</string>
@@ -50,6 +50,8 @@
     <string name="wifi_status_disconnecting">WiFi 断开中</string>
 
     <string name="item_lockscreen">一键锁屏</string>
+    <string name="item_rotate_screen">旋转屏幕</string>
+    <string name="item_qr_scan">扫码</string>
 
     <string-array name="power_menu">
         <item>关机</item>
@@ -58,6 +60,24 @@
     <string name="setting_cloud_manager_on">网络传书 （开）</string>
     <string name="setting_cloud_manager_off">网络传书 （关）</string>
     <string name="setting_cloud_manager_wifi_off">网络传书 （请连接WIFI）</string>
+    <string name="setting_wifi_transfer_on">Wi-Fi 文件传输 （开）</string>
+    <string name="setting_wifi_transfer_off">Wi-Fi 文件传输 （关）</string>
+    <string name="setting_wifi_transfer_wifi_off">Wi-Fi 文件传输 （请连接WIFI）</string>
+    <string name="setting_wifi_transfer_failed">Wi-Fi 文件传输启动失败</string>
+    <string name="setting_auto_refresh_tap_on">内容变化自动刷新 （开）</string>
+    <string name="setting_auto_refresh_tap_off">内容变化自动刷新 （关）</string>
+    <string name="setting_auto_refresh_tap_interval">每 %d 次内容变化刷新</string>
+    <string name="setting_wifi_transfer_qr">Wi-Fi 传输二维码</string>
+
+    <string name="auto_refresh_accessibility_description">监听音量键、屏幕内容变化和方向晃动，执行墨水屏全刷或模拟音量键翻页。</string>
+    <string name="auto_refresh_accessibility_label">墨水屏自动刷新</string>
+    <string name="setting_auto_refresh_on">自动全局刷新 （开）</string>
+    <string name="setting_auto_refresh_off">自动全局刷新 （关）</string>
+    <string name="setting_auto_refresh_accessibility_off">自动全局刷新 （请开启无障碍）</string>
+    <string name="setting_auto_refresh_interval">每按 %d 次音量键刷新</string>
+    <string name="setting_auto_refresh_keycode">刷新按键 keycode: %d</string>
+    <string name="setting_auto_refresh_delay">延时: %d 毫秒</string>
+    <string name="setting_auto_refresh_capture_key">现在按一下全局刷新键</string>
     <string name="setting_help_and_about">帮助 &amp; 关于</string>
     <string name="path">路径</string>
     <string name="default_path_setting">设置默认路径</string>
@@ -68,13 +88,32 @@
     <string name="app_manager_finish">完成</string>
     <string name="power_title" translatable="false">现在可以操作电源了哦~</string>
     <string name="battery_status_low_battery">电量低</string>
-    <string name="show_custom_icon">显示自定义图标</string>
+    <string name="show_custom_icon">图标风格</string>
+    <string name="icon_auto_fill">云端补全图标</string>
+    <string name="icon_theme_builtin">默认风格</string>
+    <string name="icon_theme_local">本地图标</string>
+    <string name="icon_theme_selected">已选</string>
     <string name="show_statusbar">显示状态栏</string>
     <string name="show_wifi_name">显示WiFi名字</string>
     <string name="notification_click_back_launcher">点击这里回到桌面</string>
     <string name="app_show_name">App 名字</string>
     <string name="setting_sort_mode">排序方式</string>
     <string name="sort_need_usage_permission">此排序模式需要授予使用情况访问权限</string>
+    <string name="setting_standby_wallpaper">锁屏时间显示</string>
+    <string name="setting_standby_full_refresh">时间更新全局刷新</string>
+    <string name="setting_book_cover">透明书封效果</string>
+    <string name="book_cover_need_permission">透明书封需要屏幕录制权限</string>
+    <string name="setting_sos_frame_refresh">长按SOS逐帧全刷</string>
+    <string name="setting_shake_refresh">晃动操作</string>
+    <string name="setting_shake_refresh_sensor_missing">设备不支持运动传感器</string>
+    <string name="setting_shake_mode_off">关闭</string>
+    <string name="setting_shake_mode_refresh">全刷</string>
+    <string name="setting_shake_mode_page_turn">翻页</string>
+    <string name="setting_shake_count">晃动次数</string>
+    <string name="setting_shake_amplitude">摇动幅度</string>
+    <string name="setting_shake_amplitude_small">小</string>
+    <string name="setting_shake_amplitude_medium">中</string>
+    <string name="setting_shake_amplitude_large">大</string>
     <string name="launch_failed">启动失败</string>
     <string name="launch_devicemanager">打开设备管理器</string>
     <string name="launch_devicemanager_failed">请打开设备管理器并启用 E-Ink Launcher</string>

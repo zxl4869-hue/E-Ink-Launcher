@@ -2,4 +2,5 @@
 <resources>
     <item name="menu_item_text_size" type="dimen">14sp</item>
     <item name="menu_item_height" type="dimen">45dp</item>
+    <dimen name="launcher_side_rail_width">30dp</dimen>
 </resources>

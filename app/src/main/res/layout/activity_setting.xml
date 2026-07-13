@@ -611,7 +611,272 @@
 
 
             <LinearLayout
-                android:id="@+id/menu_ftp"
+                android:id="@+id/auto_refresh_toggle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/menu_item_height"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/auto_refresh_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_auto_refresh_accessibility_off"
+                    android:textSize="@dimen/menu_item_text_size"
+                    tools:text="自动全局刷新 （开）" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:id="@+id/auto_refresh_interval"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:id="@+id/auto_refresh_interval_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textSize="@dimen/menu_item_text_size"
+                    tools:text="每按 5 次音量键刷新" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:id="@+id/auto_refresh_tap_toggle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/menu_item_height"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/auto_refresh_tap_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_auto_refresh_tap_off"
+                    android:textSize="@dimen/menu_item_text_size"
+                    tools:text="内容变化自动刷新 （开）" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:id="@+id/auto_refresh_tap_interval"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:id="@+id/auto_refresh_tap_interval_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textSize="@dimen/menu_item_text_size"
+                    tools:text="每 5 次内容变化刷新" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:id="@+id/auto_refresh_delay"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:id="@+id/auto_refresh_delay_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textSize="@dimen/menu_item_text_size"
+                    tools:text="延时: 0 毫秒" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:id="@+id/auto_refresh_keycode"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:id="@+id/auto_refresh_keycode_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textSize="@dimen/menu_item_text_size"
+                    tools:text="刷新按键 keycode: 285" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/auto_refresh_sos_frame_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/setting_sos_frame_refresh"
+                    android:textSize="@dimen/menu_item_text_size" />
+
+                <TextView
+                    android:id="@+id/auto_refresh_sos_frame_refresh_value"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|end"
+                    android:paddingRight="16dp"
+                    android:text=""
+                    android:textSize="@dimen/menu_item_text_size"
+                    tools:text="关" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:id="@+id/auto_refresh_shake_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/setting_shake_refresh"
+                    android:textSize="@dimen/menu_item_text_size" />
+
+                <TextView
+                    android:id="@+id/auto_refresh_shake_refresh_value"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|end"
+                    android:paddingRight="16dp"
+                    android:text=""
+                    android:textSize="@dimen/menu_item_text_size"
+                    tools:text="关" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:id="@+id/auto_refresh_shake_count"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/setting_shake_count"
+                    android:textSize="@dimen/menu_item_text_size" />
+
+                <TextView
+                    android:id="@+id/auto_refresh_shake_count_value"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|end"
+                    android:paddingRight="16dp"
+                    android:text=""
+                    android:textSize="@dimen/menu_item_text_size"
+                    tools:text="1 次" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:id="@+id/auto_refresh_shake_amplitude"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/setting_shake_amplitude"
+                    android:textSize="@dimen/menu_item_text_size" />
+
+                <TextView
+                    android:id="@+id/auto_refresh_shake_amplitude_value"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|end"
+                    android:paddingRight="16dp"
+                    android:text=""
+                    android:textSize="@dimen/menu_item_text_size"
+                    tools:text="中" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:id="@+id/menu_wifi_transfer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -623,19 +888,31 @@
                 android:paddingBottom="10dp">
 
                 <TextView
-                    android:id="@+id/ftp_status"
+                    android:id="@+id/wifi_transfer_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/setting_cloud_manager_wifi_off"
+                    android:text="@string/setting_wifi_transfer_wifi_off"
                     android:textSize="@dimen/menu_item_text_size"
-                    tools:text="网络传书 （开）" />
+                    tools:text="Wi-Fi 文件传输 （开）" />
 
                 <TextView
-                    android:id="@+id/ftp_addr"
+                    android:id="@+id/wifi_transfer_addr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="4dp"
-                    tools:text="ftp://192.168.123.121" />
+                    android:visibility="gone"
+                    tools:text="http://192.168.123.121:8080/" />
+
+                <ImageView
+                    android:id="@+id/wifi_transfer_qr"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:background="#ffffff"
+                    android:contentDescription="@string/setting_wifi_transfer_qr"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
             </LinearLayout>
 
 

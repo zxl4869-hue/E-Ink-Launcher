@@ -3,8 +3,9 @@ package cn.modificator.launcher.widgets;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.drawable.Drawable;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -16,6 +17,7 @@ import java.util.Set;
 
 import cn.modificator.launcher.R;
 import cn.modificator.launcher.model.AppDataCenter;
+import cn.modificator.launcher.model.IconCategoryResolver;
 import cn.modificator.launcher.model.IconCache;
 import cn.modificator.launcher.model.WifiControl;
 
@@ -143,17 +145,18 @@ public class AppItemBinder {
         continue;
       }
 
-      holder.menuContainer.setVisibility(View.VISIBLE);
       String pkg = data.get(i).activityInfo.packageName;
+      if (AppDataCenter.isVirtualPackage(pkg)) {
+        holder.menuContainer.setVisibility(View.GONE);
+        continue;
+      }
 
+      holder.menuContainer.setVisibility(View.VISIBLE);
       boolean canDelete = false;
-      if (!AppDataCenter.WIFI_PACKAGE_NAME.equals(pkg)
-          && !AppDataCenter.LOCK_PACKAGE_NAME.equals(pkg)) {
-        try {
-          canDelete = (packageManager.getPackageInfo(pkg, 0).applicationInfo.flags
-              & ApplicationInfo.FLAG_SYSTEM) == 0;
-        } catch (PackageManager.NameNotFoundException ignored) {
-        }
+      try {
+        canDelete = (packageManager.getPackageInfo(pkg, 0).applicationInfo.flags
+            & ApplicationInfo.FLAG_SYSTEM) == 0;
+      } catch (PackageManager.NameNotFoundException ignored) {
       }
 
       holder.menuDelete.setVisibility(canDelete ? View.VISIBLE : View.GONE);
@@ -172,15 +175,32 @@ public class AppItemBinder {
 
     // —— 图标 & 标签 ——
     if (AppDataCenter.WIFI_PACKAGE_NAME.equals(pkg)) {
-      WifiControl.bind(holder.itemView, customIcons);
+      loadIcon(holder.appImage, IconCategoryResolver.KEY_SYSTEM_WIFI_ON,
+          R.drawable.ic_line_wifi, customIcons);
+      holder.appName.setText("WiFi");
     } else if (AppDataCenter.LOCK_PACKAGE_NAME.equals(pkg)) {
-      loadIcon(holder.appImage, pkg, R.drawable.ic_onekeylock, customIcons);
+      loadIcon(holder.appImage, IconCategoryResolver.KEY_SYSTEM_LOCK,
+          R.drawable.ic_line_lock, customIcons);
       holder.appName.setText(R.string.item_lockscreen);
+    } else if (AppDataCenter.DRAWER_PACKAGE_NAME.equals(pkg)) {
+      loadIcon(holder.appImage, IconCategoryResolver.KEY_CATEGORY_DEFAULT,
+          R.drawable.ic_line_app, customIcons);
+      holder.appName.setText("全部应用");
+    } else if (AppDataCenter.ROTATE_PACKAGE_NAME.equals(pkg)) {
+      loadIcon(holder.appImage, IconCategoryResolver.KEY_SYSTEM_ROTATE_SCREEN,
+          R.drawable.ic_line_rotate, customIcons);
+      holder.appName.setText(R.string.item_rotate_screen);
+    } else if (AppDataCenter.QR_SCAN_PACKAGE_NAME.equals(pkg)) {
+      loadIcon(holder.appImage, IconCategoryResolver.KEY_SYSTEM_QR_SCAN,
+          R.drawable.ic_line_qr_scan, customIcons);
+      holder.appName.setText(R.string.item_qr_scan);
     } else {
-      loadIcon(holder.appImage, pkg, info, customIcons);
-      holder.appName.setText(iconCache != null
+      CharSequence label = iconCache != null
           ? iconCache.getLabel(pkg, info, packageManager)
-          : info.loadLabel(packageManager));
+          : info.loadLabel(packageManager);
+      String categoryKey = IconCategoryResolver.getCategoryKey(pkg, label);
+      loadAppIcon(holder.appImage, pkg, categoryKey, customIcons);
+      holder.appName.setText(label);
     }
 
     // —— 监听器（通过 tag 传递 position，复用单例监听器） ——
@@ -199,37 +219,63 @@ public class AppItemBinder {
   private void clearItem(LauncherAdapter.ItemViewHolder holder) {
     holder.appName.setText("");
     holder.appImage.setImageDrawable(null);
+    holder.itemView.setTag(null);
+    holder.menuDelete.setTag(null);
+    holder.menuHide.setTag(null);
     holder.itemView.setOnClickListener(null);
     holder.itemView.setOnLongClickListener(null);
     holder.menuDelete.setOnClickListener(null);
     holder.menuHide.setOnClickListener(null);
-    holder.itemView.setAlpha(0);
+    holder.menuContainer.setVisibility(View.GONE);
+    holder.itemView.setVisibility(View.INVISIBLE);
+    holder.itemView.setAlpha(1);
   }
 
   // =========================================================================
   // 图标加载
   // =========================================================================
 
-  private void loadIcon(ImageView iv, String pkg, int defaultRes,
-                         Map<String, File> customIcons) {
-    File custom = customIcons != null ? customIcons.get(pkg) : null;
+  private static void loadFileToView(ImageView iv, File file) {
+    BitmapFactory.Options opts = new BitmapFactory.Options();
+    opts.inJustDecodeBounds = true;
+    BitmapFactory.decodeFile(file.getAbsolutePath(), opts);
+    // Calculate inSampleSize: power of 2, target ~128px for quality
+    int target = 128;
+    int scale = 1;
+    while (opts.outWidth / (scale * 2) >= target && opts.outHeight / (scale * 2) >= target) {
+      scale *= 2;
+    }
+    opts.inSampleSize = scale;
+    opts.inJustDecodeBounds = false;
+    iv.setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath(), opts));
+  }
+
+  private void loadIcon(ImageView iv, String key, int defaultRes,
+                        Map<String, File> customIcons) {
+    File custom = customIcons != null ? customIcons.get(key) : null;
     if (custom != null) {
-      iv.setImageURI(Uri.fromFile(custom));
+      loadFileToView(iv, custom);
     } else {
       iv.setImageResource(defaultRes);
     }
   }
 
-  private void loadIcon(ImageView iv, String pkg, ResolveInfo info,
-                         Map<String, File> customIcons) {
+  private void loadAppIcon(ImageView iv, String pkg, String categoryKey,
+                           Map<String, File> customIcons) {
     File custom = customIcons != null ? customIcons.get(pkg) : null;
+    if (custom == null && customIcons != null) {
+      custom = customIcons.get(categoryKey);
+    }
+    if (custom == null && customIcons != null) {
+      custom = customIcons.get(IconCategoryResolver.KEY_CATEGORY_DEFAULT);
+    }
     if (custom != null) {
-      iv.setImageURI(Uri.fromFile(custom));
+      loadFileToView(iv, custom);
     } else {
-      Drawable icon = iconCache != null
-          ? iconCache.getIcon(pkg, info, packageManager)
-          : info.loadIcon(packageManager);
-      iv.setImageDrawable(icon);
+      if (customIcons != null && !customIcons.isEmpty()) {
+        Log.d("IconBinder", "fallback builtin for " + pkg + " (cat=" + categoryKey + ") mapSize=" + customIcons.size());
+      }
+      iv.setImageResource(IconCategoryResolver.getBuiltinIconResForApp(pkg, categoryKey));
     }
   }
 
@@ -244,6 +290,8 @@ public class AppItemBinder {
       int pos = (int) v.getTag();
       if (pos >= dataRef.size()) return;
       if (isDelete) {
+        String pkg = dataRef.get(pos).activityInfo.packageName;
+        if (AppDataCenter.isVirtualPackage(pkg)) return;
         callback.onItemDeleteClick(dataRef.get(pos));
       } else {
         callback.onItemClick(dataRef.get(pos));

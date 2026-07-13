@@ -3,6 +3,7 @@ package cn.modificator.launcher.widgets;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 
 import cn.modificator.launcher.R;
@@ -137,7 +138,8 @@ public class EInkLauncherView extends ViewGroup {
     int h = getAdjustedHeight();
     if (w <= 0 || h <= 0) return;
 
-    swipeThreshold = Math.min(w, h) / 6f;
+    swipeThreshold = Math.max(28f * getResources().getDisplayMetrics().density,
+        Math.min(w, h) / 12f);
     int cellW = w / colNum;
     int cellH = h / rowNum;
 
@@ -154,9 +156,10 @@ public class EInkLauncherView extends ViewGroup {
 
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    int w = getAdjustedWidth();
-    int h = getAdjustedHeight();
+    int measuredW = View.MeasureSpec.getSize(widthMeasureSpec);
+    int measuredH = View.MeasureSpec.getSize(heightMeasureSpec);
+    int w = measuredW - getPaddingLeft() - getPaddingRight();
+    int h = measuredH - getPaddingTop() - getPaddingBottom();
     if (w <= 0 || h <= 0) return;
 
     int cellWSpec = makeMeasureSpec(w / colNum, EXACTLY);
@@ -164,6 +167,7 @@ public class EInkLauncherView extends ViewGroup {
     for (int i = 0; i < getChildCount(); i++) {
       getChildAt(i).measure(cellWSpec, cellHSpec);
     }
+    setMeasuredDimension(measuredW, measuredH);
   }
 
   private int getAdjustedWidth() {
@@ -182,7 +186,7 @@ public class EInkLauncherView extends ViewGroup {
     if (adapter == null) return;
     int targetCount = rowNum * colNum;
 
-    if (adapter.getHolderCount() == targetCount) {
+    if (adapter.getHolderCount() == targetCount && getChildCount() == targetCount) {
       // 数量不变，仅刷新背景
       for (int i = 0; i < targetCount; i++) {
         getChildAt(i).setBackgroundResource(getItemBackground(i));
